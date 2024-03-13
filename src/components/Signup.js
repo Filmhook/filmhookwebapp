@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import '../CSS/SignUp.css'
+import '../CSS/SignUp.css';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 const countries = [
     {
@@ -1966,10 +1969,17 @@ function SignUp() {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [showDatePicker, setShowDatePicker] = useState(false);
 
+    const navigate = useNavigate()
+
+
 
     const handlepressNav = () => {
-        // Navigate to the signup page
+
+        // Navigate to the '/SignUp' route
+        navigate('/Signup2')
+
     };
+
 
     const onDateChange = (event) => {
         const selectedDate = event.target.value;
@@ -1977,6 +1987,49 @@ function SignUp() {
             setDob(new Date(selectedDate));
         }
     };
+
+    const styles = {
+       
+        container: {
+          display: 'flex',
+          
+          justifyContent: 'center',
+          height: '100vh',
+          flexDirection:10,
+          
+        },
+        formContainer: {
+          width: '90%',
+          maxWidth: 600,
+          padding: 20,
+          backgroundColor: '#f5f5f5',
+          borderRadius: 10,
+          alignItems: 'center',
+  
+          
+        },
+        logo: {
+          height: 100,
+          width: '100%',
+          marginBottom: 20,
+        },
+        inputContainer: {
+          width: '100%',
+          marginBottom: 20,
+        },
+        input: {
+          height: 50,
+          width: '50%',
+          padding: 10,
+          fontSize: 16,
+          
+          
+        //   borderRadius: 5,
+        //   borderWidth: 1,
+        //   borderColor: 'black',
+        },
+      };
+    
     return (
         <div>
             <div>
@@ -1986,16 +2039,17 @@ function SignUp() {
             <div>
                 <img style={{ height: 50, width: 200 }} src={require('../components/image/Film_hook.png')} alt="Film Hook" />
             </div>
-            <div>
+            <div style={styles.changeinputContainer}>
                 <input
                     placeholder="What is your name?"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    style={{ height: 40, width: 200 }}
+                    style={styles.input}
                 />
             </div>
-            <div>
-                <button onClick={() => setShowDatePicker(true)}>D.O.B</button>
+            <div >
+                <div style={styles.changedate}>
+                <button onClick={() => setShowDatePicker(true)}>D.O.B</button></div>
                 {showDatePicker && (
                     <input
                         type="date"

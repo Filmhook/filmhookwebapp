@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../CSS/Login.css'; // Assuming you have a separate CSS file for styling
 import { Link } from 'react-router-dom';
 
-
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

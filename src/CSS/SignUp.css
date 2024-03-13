@@ -1,17 +1,43 @@
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .formContainer {
+    width: 400px;
     padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .headerContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .headerImage {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .boxContent {
+    margin-bottom: 20px;
+  }
+  
+  .inputContainer {
+    position: relative;
   }
   
   .input,
   .button,
   select {
     height: 40px;
-    width: 200px;
+    width: 20px;
     margin: 10px;
   }
   
@@ -19,7 +45,7 @@
     .input,
     .button,
     select {
-      width: 80%;
+      width: 90%;
     }
   }
   
