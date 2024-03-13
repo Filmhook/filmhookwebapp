@@ -1,86 +1,127 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.form-container {
+  width: 500px; /* Adjust the width as needed */
+  height: 700px; /* Adjust the height as needed */
+  /* max-width: 400px; */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.header-image {
+  width: 35%;
+  padding: 10px;
+
+  /* margin-left: 20%; */
+  margin-top: -10%;
+}
+
+.header2-image {
+  position: absolute;
+  width:40%;
+  margin-top: 20%;
+  /* padding: 10px; */
+}
+
+
+.box-content {
+  margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.input-container {
+  position: relative;
+  padding: 5px;
+  right: 10%;
+
+}
+
+.input {
+  width: 150%;
+  height: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+.forgot-password{
+  /* position: absolute; */
+ padding: 10px;
+ margin-left: 35%;
   
-  .formContainer {
-    width: 400px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .headerContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .headerImage {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .boxContent {
-    margin-bottom: 20px;
-  }
-  
-  .inputContainer {
-    position: relative;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-  
-  .showPasswordButton {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .forgotPasswordButton,
-  .loginButton {
-    width: 100%;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .forgotPasswordButton:hover,
-  .loginButton:hover {
-    background-color: #333;
-  }
-  
-  .signupTopic {
-    text-align: center;
-    font-size: 16px;
-  }
-  
-  .signupLink {
-    color: blue;
-    text-decoration: none;
-  }
-  
-  .signupLink:hover {
-    text-decoration: underline;
-  }
-  
+}
+
+.login-button{
+  width: 20%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.signup-button {
+  width: 70%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.forgot-password-button:hover,
+.login-button:hover,
+.signup-button:hover {
+  background-color: #333;
+}
+
+.signup-topic {
+  text-align: center;
+  font-size: 16px;
+}
+
+.signup-link {
+  color: red;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
