@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .input,
+  .button,
+  select {
+    height: 40px;
+    width: 200px;
+    margin: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .input,
+    .button,
+    select {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .input,
+    .button,
+    select {
+      width: 100%;
+    }
+  }
+  

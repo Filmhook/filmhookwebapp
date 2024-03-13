@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/Login.css'; // Assuming you have a separate CSS file for styling
+import { Link } from 'react-router-dom';
 
 
 export default function Login() {
@@ -49,9 +50,7 @@ export default function Login() {
               className="input"
               type={showPassword ? 'text' : 'password'}
             />
-            <button className="eye-icon" onClick={toggleShowPassword}>
-              {showPassword ? 'Hide' : 'Show'}
-            </button>
+            <img src={require('../components/image/password_eye_show.png')} onClick={toggleShowPassword} alt="Show password" className="header-image" />
           </div>
           <button className="forgot-password-button" onClick={handleForgotPassword}>
             Forgot Password?
@@ -61,9 +60,9 @@ export default function Login() {
           </button>
           <div className="signup-container">
             <span className="signup-topic">I don't have an account?</span>
-            <button className="signup-button" onClick={() => console.log('Navigate to Sign Up')}>
+            <Link to="/signup" className="signup-button" >
               Create Account
-            </button>
+            </Link>
           </div>
         </div>
       </div>
