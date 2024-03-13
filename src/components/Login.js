@@ -1,118 +1,72 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// // import  '../src/components/CSS/logic.css'; // You'll need to create a CSS file for styling
-
-// function Login() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
-
-//   const toggleShowPassword = () => {
-//     setShowPassword(!showPassword);
-//   };
-
-//   const handleLogin = () => {
-//     // Add your login logic here
-//   };
-
-//   const handleForgotPassword = () => {
-//     // Add your forgot password logic here
-//   };
-
-//   return (
-//     <div className="container">
-//       <div className="formContainer">
-//         <div className="headerContainer">
-//         <img className="headerImage" src={require('../components/image/FH_logos.png').default} alt="header" />
-
-//         </div>
-//         <div className="boxContent">
-//           <div className="inputContainer">
-//             <input
-//               type="email"
-//               placeholder="Email Address"
-//               value={email}
-//               onChange={(e) => setEmail(e.target.value)}
-//               className="input"
-//             />
-//           </div>
-//         </div>
-//         <div className="boxContent">
-//           <div className="inputContainer">
-//             <input
-//               type={showPassword ? 'text' : 'password'}
-//               placeholder="Password"
-//               value={password}
-//               onChange={handlePasswordChange}
-//               className="input"
-//             />
-//             <button className="showPasswordButton" onClick={toggleShowPassword}>
-//               {showPassword ? 'Hide' : 'Show'}
-//             </button>
-//           </div>
-//         </div>
-//         <button className="forgotPasswordButton" onClick={handleForgotPassword}>
-//           Forgot Password?
-//         </button>
-//         <button className="loginButton" onClick={handleLogin}>
-//           Login
-//         </button>
-//         <div className="signupTopic">
-//           <span>I don't have an account? </span>
-//           <Link to="/signup" className="signupLink">Create Account</Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Login;
+import React, { useState } from 'react';
+import '../CSS/Login.css'; // Assuming you have a separate CSS file for styling
 
 
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleForgotPassword = () => {
+    console.log('Forgot password clicked');
+    // Add logic for handling forgot password
+  };
 
-  const navigate = useNavigate();
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
-    // TODO: Validate the email and password
-
-    // TODO: Send the login request to the backend
-
-    // If the login is successful, navigate to the dashboard page
-    navigate("/dashboard");
+  const handleLogin = () => {
+    console.log('Login clicked');
+    // Add login logic
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="container">
+      <div className="form-container">
+        <div className="header-container">
+          <img src={require('../components/image/FH_logos.png')} alt="Logo" className="header-image" />
+        </div>
+        <div className="box-content">
+          <div className="input-container">
+            <input
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input"
+              type="email"
+            />
+          </div>
+          <div className="input-container">
+            <input
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              className="input"
+              type={showPassword ? 'text' : 'password'}
+            />
+            <button className="eye-icon" onClick={toggleShowPassword}>
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
+          <button className="forgot-password-button" onClick={handleForgotPassword}>
+            Forgot Password?
+          </button>
+          <button className="login-button" onClick={handleLogin}>
+            Login
+          </button>
+          <div className="signup-container">
+            <span className="signup-topic">I don't have an account?</span>
+            <button className="signup-button" onClick={() => console.log('Navigate to Sign Up')}>
+              Create Account
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Login;
+}
