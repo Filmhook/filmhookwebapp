@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../CSS/SignUp.css';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 
 
 
@@ -1962,14 +1964,50 @@ const countries = [
 ];
 function SignUp() {
     const [name, setName] = useState('');
-    const [dob, setDob] = useState(null);
     const [selectedGender, setSelectedGender] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedState, setSelectedState] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
+    // const [dob, setDOB] = useState(null);
+
+    const [selectedDate, setSelectedDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
+    const [editedDate, setEditedDate] = useState('');
+    const inputRef = useRef(null);
 
     const navigate = useNavigate()
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        if (date) {
+            const formattedDate = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
+            setEditedDate(formattedDate);
+        } else {
+            setEditedDate('');
+        }
+        setShowDatePicker(false);
+    };
+
+    const toggleDatePicker = () => {
+        setShowDatePicker(!showDatePicker);
+        console.log(selectedDate)
+    };
+
+
+
+    const handleInputChange = (e) => {
+        setEditedDate(e.target.value);
+    };
+
+    const handleInputBlur = () => {
+        // Update selectedDate when input field loses focus
+        const dateParts = editedDate.split('-');
+        const date = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+        if (!isNaN(date.getTime())) {
+            setEditedDate(date.toISOString().slice(0, 10));
+        }
+    };
+
 
 
 
@@ -1979,16 +2017,9 @@ function SignUp() {
         navigate('/Signup2')
 
     };
-
-
-    const onDateChange = (event) => {
-        const selectedDate = event.target.value;
-        if (selectedDate) {
-            setDob(new Date(selectedDate));
-        }
+    const loginPageNav = () => {
+        navigate('/')
     };
-
-
     const styles = {
 
         container: {
@@ -1996,13 +2027,13 @@ function SignUp() {
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
-            backgroundColor: '#f5f5f5',
+            backgroundColor: '#F8EEEC',
         },
         formContainer: {
-            width: '600px', /* Adjust the width as needed */
-            height: '800px', /* Adjust the height as needed */
+            width: '600px',
+            height: '800px',
             padding: '20px',
-            backgroundColor: 'white',
+            backgroundColor: '#F7FEFF',
             borderRadius: '10px',
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
             alignItems: 'center',
@@ -2028,15 +2059,7 @@ function SignUp() {
             height: '10%',
             borderRadius: '5px',
             overflow: 'hidden',
-
         },
-        changedate: {
-            // Default styles for the div
-            marginLeft: '-40%',
-            // marginTop: '20px', 
-            
-        },
-       
         input: {
             width: '100%',
             height: '75%',
@@ -2086,23 +2109,36 @@ function SignUp() {
                         style={styles.input}
                     />
                 </div>
-               
-                    <div style={styles.changedate}>
-                        <div>
-                            <button onClick={() => setShowDatePicker(true)}>D.O.B</button>
-                        </div>
-                       
-                    </div>
+                <div className="row" style={{ textAlign: 'center', border: '5px', padding: '10px' }}>
+                    <button onClick={toggleDatePicker}>
+                        DOB
+                    </button>
                     {showDatePicker && (
-                        <input
+                        <DatePicker
                             type="date"
-                            onChange={onDateChange}
+                            selected={selectedDate}
+                            onChange={handleDateChange}
+                            dateFormat="yyyy-MM-dd"
+                            showYearDropdown
+                            scrollableYearDropdown
+                            inline
+                            style={{ marginLeft: '10px' }}
                         />
                     )}
-                    {dob && (
-                        <div>{dob.toDateString()}</div>
+                    {!showDatePicker && (
+                        <input
+                            className="dateInput"
+                            type="text"
+                            value={editedDate}
+                            ref={inputRef}
+                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
+                            placeholder='YYYY-MM-DD'
+                            style={{ padding: '5px', border: '1px solid #ccc', }}
+                        />
                     )}
-               
+
+                </div>
                 <div>
                     <select
                         value={selectedGender}
@@ -2166,6 +2202,7 @@ function SignUp() {
                     </select>
                 </div>
                 <div>
+                    <button onClick={loginPageNav}> Back</button>
                     <button onClick={handlepressNav}>STEP 2</button>
                 </div>
             </div>
@@ -2174,3 +2211,7 @@ function SignUp() {
 };
 
 export default SignUp;
+
+
+
+
