@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/SignUp.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -1988,145 +1988,189 @@ function SignUp() {
         }
     };
 
+
     const styles = {
-       
+
         container: {
-          display: 'flex',
-          
-          justifyContent: 'center',
-          height: '100vh',
-          flexDirection:10,
-          
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            backgroundColor: '#f5f5f5',
         },
         formContainer: {
-          width: '90%',
-          maxWidth: 600,
-          padding: 20,
-          backgroundColor: '#f5f5f5',
-          borderRadius: 10,
-          alignItems: 'center',
-  
-          
+            width: '600px', /* Adjust the width as needed */
+            height: '800px', /* Adjust the height as needed */
+            padding: '20px',
+            backgroundColor: 'white',
+            borderRadius: '10px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
         },
-        logo: {
-          height: 100,
-          width: '100%',
-          marginBottom: 20,
+        headerImage: {
+            width: '30%',
+            alignItems: 'center',
+            marginLeft: '10%',
+            marginTop: '-5%',
         },
-        inputContainer: {
-          width: '100%',
-          marginBottom: 20,
+        header2Image: {
+            width: '50%',
+            marginTop: '2%',
+            marginBottom: '5%',
         },
+        changeinputContainer: {
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '60%',
+            height: '10%',
+            borderRadius: '5px',
+            overflow: 'hidden',
+
+        },
+        changedate: {
+            // Default styles for the div
+            marginLeft: '-40%',
+            // marginTop: '20px', 
+            
+        },
+       
         input: {
-          height: 50,
-          width: '50%',
-          padding: 10,
-          fontSize: 16,
-          
-          
-        //   borderRadius: 5,
-        //   borderWidth: 1,
-        //   borderColor: 'black',
+            width: '100%',
+            height: '75%',
+            padding: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            fontSize: '16px',
+            boxSizing: 'border-box',
+            marginBottom: '10px',
         },
-      };
-    
+        signUpButton: {
+            width: '20%',
+            padding: '10px',
+            backgroundColor: 'black',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            marginBottom: '5%',
+            marginTop: '10%',
+        },
+        signupcontiner: {
+            marginTop: '5%',
+        },
+        signup: {
+            color: 'red',
+        },
+    };
+
     return (
-        <div>
-            <div>
-                <img style={{ height: 100, width: 100 }} src={require('../components/image/FH_logos.png')} alt="Logo" />
-            </div>
-            <p>Welcome to</p>
-            <div>
-                <img style={{ height: 50, width: 200 }} src={require('../components/image/Film_hook.png')} alt="Film Hook" />
-            </div>
-            <div style={styles.changeinputContainer}>
-                <input
-                    placeholder="What is your name?"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={styles.input}
-                />
-            </div>
-            <div >
-                <div style={styles.changedate}>
-                <button onClick={() => setShowDatePicker(true)}>D.O.B</button></div>
-                {showDatePicker && (
+        <div style={styles.container}>
+            <div style={styles.formContainer}>
+                <div style={styles.headerImage}>
+                    <img style={{ height: '100%', width: '100%' }} src={require('../components/image/FH_logos.png')} alt="Logo" />
+                </div>
+                <span style={{ color: 'black', width: '30%', marginTop: '-6%', height: '8%' }}><h1>Welcome to</h1></span>
+                <div style={styles.header2Image}>
+                    <img style={{ height: '100%', width: '100%' }} src={require('../components/image/Film_hook.png')} alt="Film Hook" />
+                </div>
+                <div style={styles.changeinputContainer}>
                     <input
-                        type="date"
-                        onChange={onDateChange}
+                        placeholder="What is your name?"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        style={styles.input}
                     />
-                )}
-                {dob && (
-                    <div>{dob.toDateString()}</div>
-                )}
-            </div>
-            <div>
-                <select
-                    value={selectedGender}
-                    onChange={(e) => setSelectedGender(e.target.value)}
-                    style={{ height: 40, width: 200 }}
-                >
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="Transgender">Transgender</option>
-                    <option value="others">Others</option>
-                </select>
-            </div>
-            <div>
-                <select
-                    value={selectedCountry}
-                    onChange={(e) => setSelectedCountry(e.target.value)}
-                    style={{ height: 40, width: 200 }}
-                >
-                    <option value="">Select Country</option>
-                    {countries.map((country, index) => (
-                        <option key={index} value={country.name}>
-                            {country.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <select
-                    value={selectedState}
-                    onChange={(e) => setSelectedState(e.target.value)}
-                    style={{ height: 40, width: 200 }}
-                >
-                    <option value="">Select State</option>
-                    {selectedCountry &&
-                        countries
-                            .find((country) => country.name === selectedCountry)
-                            .states.map((state, index) => (
-                                <option key={index} value={state.name}>
-                                    {state.name}
-                                </option>
-                            ))}
-                </select>
-            </div>
-            <div>
-                <select
-                    value={selectedDistrict}
-                    onChange={(e) => setSelectedDistrict(e.target.value)}
-                    style={{ height: 40, width: 200 }}
-                >
-                    <option value="">Select District</option>
-                    {selectedState &&
-                        countries
-                            .find((country) => country.name === selectedCountry)
-                            .states.find((state) => state.name === selectedState)
-                            .districts.map((district, index) => (
-                                <option key={index} value={district}>
-                                    {district}
-                                </option>
-                            ))}
-                </select>
-            </div>
-            <div>
-                <button onClick={handlepressNav}>STEP 2</button>
+                </div>
+               
+                    <div style={styles.changedate}>
+                        <div>
+                            <button onClick={() => setShowDatePicker(true)}>D.O.B</button>
+                        </div>
+                       
+                    </div>
+                    {showDatePicker && (
+                        <input
+                            type="date"
+                            onChange={onDateChange}
+                        />
+                    )}
+                    {dob && (
+                        <div>{dob.toDateString()}</div>
+                    )}
+               
+                <div>
+                    <select
+                        value={selectedGender}
+                        onChange={(e) => setSelectedGender(e.target.value)}
+                        style={{ height: 40, width: 200 }}
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="Transgender">Transgender</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div>
+                    <select
+                        value={selectedCountry}
+                        onChange={(e) => setSelectedCountry(e.target.value)}
+                        style={{ height: 40, width: 200 }}
+                    >
+                        <option value="">Select Country</option>
+                        {countries.map((country, index) => (
+                            <option key={index} value={country.name}>
+                                {country.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <select
+                        value={selectedState}
+                        onChange={(e) => setSelectedState(e.target.value)}
+                        style={{ height: 40, width: 200 }}
+                    >
+                        <option value="">Select State</option>
+                        {selectedCountry &&
+                            countries
+                                .find((country) => country.name === selectedCountry)
+                                .states.map((state, index) => (
+                                    <option key={index} value={state.name}>
+                                        {state.name}
+                                    </option>
+                                ))}
+                    </select>
+                </div>
+                <div>
+                    <select
+                        value={selectedDistrict}
+                        onChange={(e) => setSelectedDistrict(e.target.value)}
+                        style={{ height: 40, width: 200 }}
+                    >
+                        <option value="">Select District</option>
+                        {selectedState &&
+                            countries
+                                .find((country) => country.name === selectedCountry)
+                                .states.find((state) => state.name === selectedState)
+                                .districts.map((district, index) => (
+                                    <option key={index} value={district}>
+                                        {district}
+                                    </option>
+                                ))}
+                    </select>
+                </div>
+                <div>
+                    <button onClick={handlepressNav}>STEP 2</button>
+                </div>
             </div>
         </div>
     );
-}
+};
 
 export default SignUp;
